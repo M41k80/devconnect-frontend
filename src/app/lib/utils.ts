@@ -19,7 +19,7 @@ export function truncate(str: string, max: number): string {
   return str.length <= max ? str : str.slice(0, max).trimEnd() + '…'
 }
 
-/** Format ISO 8601 date from backend to localised display string */
+
 export function formatDate(iso: string, locale: string = 'en'): string {
   return new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', {
     year: 'numeric',
@@ -28,7 +28,7 @@ export function formatDate(iso: string, locale: string = 'en'): string {
   }).format(new Date(iso))
 }
 
-// ─── Status display config ────────────────────────────────────────────────────
+
 
 export const PROJECT_STATUS_CONFIG: Record<
   ProjectStatus,
