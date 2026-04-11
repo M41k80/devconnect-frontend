@@ -20,12 +20,21 @@ export function truncate(str: string, max: number): string {
 }
 
 
-export function formatDate(iso: string, locale: string = 'en'): string {
-  return new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  }).format(new Date(iso))
+export function formatDate(
+  iso?: string | Date | null,
+  locale: string = "en"
+): string {
+  if (!iso) return "—";
+
+  const date = new Date(iso);
+
+  if (isNaN(date.getTime())) return "—";
+
+  return new Intl.DateTimeFormat(locale === "es" ? "es-ES" : "en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(date);
 }
 
 

@@ -1,7 +1,7 @@
 import { useI18n } from "@/app/i18n";
 import { ProjectCardHeader } from "./ProjectCardHeader";
 import { ProjectCardFooter } from "./ProjectCardFooter";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { cn, truncate } from "@/app/lib/utils";
 import { Project } from "@/app/types/entities";
 import type { CSSProperties } from "react";
@@ -15,6 +15,7 @@ export interface ProjectCardProps {
 
 export function ProjectCard({ project, className, style }: ProjectCardProps) {
   const { locale } = useI18n();
+  console.log("CARD STATUS:", project.status, project.id);
 
   return (
     <Link

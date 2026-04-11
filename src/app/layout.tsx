@@ -1,5 +1,7 @@
 import { Fraunces, DM_Sans, DM_Mono } from "next/font/google";
 import "../app/styles/globals.css";
+import { ModalProvider } from "./context/ModalContext";
+
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -13,13 +15,17 @@ const dmSans = DM_Sans({
 
 const dmMono = DM_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"], 
+  weight: ["400", "500"],
   variable: "--font-dm-mono",
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -27,8 +33,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${fraunces.variable} ${dmSans.variable} ${dmMono.variable}`}>
-        {children}
+      <body
+        className={`${fraunces.variable} ${dmSans.variable} ${dmMono.variable}`}
+      >
+        <ModalProvider>
+          {children}
+        </ModalProvider>
       </body>
     </html>
   );

@@ -18,7 +18,17 @@ export function ProjectStatusBadge({
   locale = "en",
   className,
 }: ProjectStatusBadgeProps) {
-  const cfg = PROJECT_STATUS_CONFIG[status];
+  
+  const normalizedStatus = (status ?? "")
+    .toString()
+    .trim()
+    .toLowerCase() as ProjectStatus;
+
+  
+  const cfg =
+    PROJECT_STATUS_CONFIG[normalizedStatus] ??
+    PROJECT_STATUS_CONFIG.idea;
+
   return (
     <span className={cn("dc-badge", cfg.className, className)}>
       {locale === "es" ? cfg.labelEs : cfg.labelEn}
@@ -37,7 +47,10 @@ export function ApplicationStatusBadge({
   locale = "en",
   className,
 }: ApplicationStatusBadgeProps) {
-  const cfg = APPLICATION_STATUS_CONFIG[status];
+  const cfg =
+    APPLICATION_STATUS_CONFIG[status] ??
+    APPLICATION_STATUS_CONFIG.pending;
+
   return (
     <span className={cn("dc-badge", cfg.className, className)}>
       {locale === "es" ? cfg.labelEs : cfg.labelEn}
