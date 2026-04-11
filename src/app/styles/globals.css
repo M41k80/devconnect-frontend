@@ -108,7 +108,23 @@ body {
 @layer components {
   
   .dc-container {
-    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Standard page shell: navbar offset + vertical breathing room */
+  .dc-page {
+    @apply min-h-screen pt-24 pb-20;
+    background: var(--bg);
+  }
+
+  /* Consistent page header row across all inner pages */
+  .dc-page-header {
+    @apply flex items-end justify-between gap-4 mb-8;
+  }
+
+  .dc-page-header-sub {
+    @apply text-sm mt-1;
+    color: var(--text-muted);
   }
 
   
@@ -127,7 +143,7 @@ body {
     transform: translateY(-1px);
   }
 
-
+  
   .dc-btn {
     @apply relative inline-flex items-center justify-center gap-2
            rounded-xl px-5 py-2.5 text-sm font-semibold
@@ -179,19 +195,19 @@ body {
     border-color: var(--danger) !important;
   }
 
-
+  
   .dc-label {
     @apply block text-sm font-medium mb-1.5;
     color: var(--text-muted);
   }
 
- 
+  
   .dc-badge {
     @apply inline-flex items-center gap-1.5 rounded-full
            border px-2.5 py-0.5 text-xs font-semibold;
   }
 
- 
+  /* Skeleton */
   .dc-skeleton {
     @apply rounded-lg;
     background: linear-gradient(
@@ -204,7 +220,7 @@ body {
     animation: skeleton 1.6s ease-in-out infinite;
   }
 
- 
+  
   .dc-page-title {
     @apply font-display text-3xl sm:text-4xl font-bold tracking-tight;
     color: var(--text);

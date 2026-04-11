@@ -18,7 +18,7 @@ const schema = z.object({
 })
 type FormValues = z.infer<typeof schema>
 
-export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
+export function LoginForm({ onSwitch, onSuccess }: { onSwitch: () => void; onSuccess?: () => void }) {
   const { t } = useI18n()
   const router = useRouter()
   const { fetchMe } = useAuthStore()
@@ -37,6 +37,7 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
     try {
       await authApi.login(values)
       await fetchMe()
+      onSuccess?.()
       router.push('/projects')
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string | string[] } } })?.response?.data?.message

@@ -42,11 +42,18 @@ export const useAuthStore = create<AuthState & AuthActions>()(
       logout: async () => {
         try {
           await authApi.logout();
+        } catch (err) {
+          console.warn("Logout API failed", err);
         } finally {
           set({ user: null, isAuthenticated: false });
+
           if (typeof window !== "undefined") {
-            window.location.href = "/login";
+            localStorage.removeItem("dc-auth");
           }
+
+          window.dispatchEvent(
+            new CustomEvent("open-auth-modal", { detail: { mode: "login" } }),
+          );
         }
       },
 
@@ -54,10 +61,16 @@ export const useAuthStore = create<AuthState & AuthActions>()(
     }),
     {
       name: "dc-auth",
+
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,
       }),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.isAuthenticated = !!state.user;
+        }
+      },
     },
   ),
 );

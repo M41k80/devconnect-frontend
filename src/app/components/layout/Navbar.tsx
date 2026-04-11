@@ -7,22 +7,22 @@ import { cn } from "@/app/lib/utils"
 import { Menu, X, Layers, Compass, ChevronDown, Globe } from "lucide-react"
 import { useI18n } from "@/app/i18n"
 import { useAuthStore } from "@/app/store/auth.store"
+import { useModal } from "@/app/context/ModalContext"
 
 import { ThemeToggle } from "@/app/components/layout/navbar/ThemeToggle"
 import { UserMenu } from "@/app/components/layout/navbar/UserMenu"
 import { AuthButtons } from "@/app/components/layout/navbar/AuthButtons"
 import { MobileMenu } from "@/app/components/layout/navbar/MobileMenu"
-import { AuthModal } from "@/app/components/auth/AuthModal"
 
 export const Navbar: FC = () => {
   const pathname = usePathname()
   const { isAuthenticated } = useAuthStore()
   const { t, locale, setLocale } = useI18n()
+  const { openAuth } = useModal()
 
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
-  const [authOpen, setAuthOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -71,7 +71,7 @@ export const Navbar: FC = () => {
             </span>
           </Link>
 
-          
+         
           <nav className="hidden md:flex items-center gap-1">
             {links.map(({ href, label, icon: Icon }) => (
               <Link
@@ -133,11 +133,13 @@ export const Navbar: FC = () => {
 
             <ThemeToggle />
 
-            
             {isAuthenticated ? (
               <UserMenu />
             ) : (
-              <AuthButtons onClick={() => setAuthOpen(true)} />
+              <AuthButtons
+                onLogin={() => openAuth("login")}
+                onRegister={() => openAuth("register")}
+              />
             )}
 
             
@@ -151,16 +153,13 @@ export const Navbar: FC = () => {
           </div>
         </div>
 
-        
         <MobileMenu
           isOpen={mobileOpen}
           onClose={() => setMobileOpen(false)}
-          onAuthClick={() => setAuthOpen(true)}
+          onLoginClick={() => openAuth("login")}
+          onRegisterClick={() => openAuth("register")}
         />
       </header>
-
-      
-      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </>
   )
 }

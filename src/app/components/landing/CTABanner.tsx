@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { Star, ArrowRight } from "lucide-react";
 import { useI18n } from "@/app/i18n";
+import { useModal } from "@/app/context/ModalContext";
 
 export function CTABanner() {
   const { t } = useI18n();
+  const { openAuth } = useModal();
 
   return (
     <section className="py-24">
@@ -47,12 +48,12 @@ export function CTABanner() {
             >
               {t.landing.ctaBannerSub}
             </p>
-            <Link
-              href="/register"
+            <button
+              onClick={() => openAuth("register")}
               className="dc-btn-primary inline-flex px-8 py-3.5 text-base"
             >
               {t.landing.cta} <ArrowRight size={18} />
-            </Link>
+            </button>
           </div>
         </div>
       </div>
