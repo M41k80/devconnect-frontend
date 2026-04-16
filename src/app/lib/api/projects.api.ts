@@ -1,13 +1,17 @@
 import { get, post, patch, del } from '../http/http-methods'
-import { 
-  ApplyProjectDto, 
-  CreateProjectDto, 
-  GetProjectsDto, 
-  ProjectResponseDto, 
-  UpdateProjectDto 
+import {
+  ApplyProjectDto,
+  CreateProjectDto,
+  GetProjectsDto,
+  ProjectResponseDto,
+  UpdateProjectDto,
 } from '@/app/types/dtos'
 import { Project, ProjectApplication, ProjectMember } from '@/app/types/entities'
-import { PaginatedApplicationsResponse, PaginatedResponse } from '@/app/types/pagination/pagination.types'
+import { AppliedProject } from '@/app/types/entities/applied-project.entity'
+import {
+  PaginatedApplicationsResponse,
+  PaginatedResponse,
+} from '@/app/types/pagination/pagination.types'
 
 type MessageResponse = { message: string }
 
@@ -42,9 +46,11 @@ export const projectsApi = {
   rejectApplication: (applicationId: string) =>
     patch<MessageResponse>(`/projects/applications/${applicationId}/reject`),
 
+  // Returns AppliedProject[] — different shape from ProjectApplication
   getApplied: () =>
-    get<ProjectApplication[]>('/projects/applied'),
+    get<AppliedProject[]>('/projects/applied'),
 
   discover: () =>
     get<(Project & { score: number })[]>('/projects/discover'),
 }
+

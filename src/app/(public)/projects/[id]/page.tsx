@@ -71,7 +71,7 @@ export default function ProjectDetailPage() {
         </Link>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main column */}
+          
           <div className="lg:col-span-2 space-y-5">
             <div className="dc-card p-6 anim-fade-up">
               <div className="flex items-start gap-3 justify-between mb-4">
@@ -134,7 +134,7 @@ export default function ProjectDetailPage() {
             )}
           </div>
 
-          {/* Sidebar */}
+          
           <div className="lg:col-span-1 space-y-4">
             {isAuthenticated && !isOwner && (
               <div className="dc-card p-5 anim-fade-up delay-1">

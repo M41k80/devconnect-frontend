@@ -53,7 +53,7 @@ export function UserMenu() {
             borderColor: "var(--border)",
           }}
         >
-          {/* User info */}
+          
           <div
             className="px-4 py-2.5 border-b"
             style={{ borderColor: "var(--border)" }}

@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { User } from "../types/entities";
 import { authApi, usersApi } from "../lib/api";
+import { AxiosError } from "axios";
 
 interface AuthState {
   user: User | null;
@@ -32,8 +33,15 @@ export const useAuthStore = create<AuthState & AuthActions>()(
         try {
           const user = await usersApi.getMe();
           set({ user, isAuthenticated: true });
-        } catch {
-          set({ user: null, isAuthenticated: false });
+        } catch (err) {
+          const error = err as AxiosError;
+          if (error.response?.status === 401) {
+            
+            set({ user: null, isAuthenticated: false });
+          } else {
+            
+            console.warn("fetchMe error (no logout):", error.response?.status, error.message);
+          }
         } finally {
           set({ isLoading: false });
         }
@@ -43,8 +51,10 @@ export const useAuthStore = create<AuthState & AuthActions>()(
         try {
           await authApi.logout();
         } catch (err) {
-          console.warn("Logout API failed", err);
+          const error = err as AxiosError;
+          console.warn("Logout API failed", error.response?.status, error.message);
         } finally {
+          
           set({ user: null, isAuthenticated: false });
 
           if (typeof window !== "undefined") {
@@ -61,14 +71,14 @@ export const useAuthStore = create<AuthState & AuthActions>()(
     }),
     {
       name: "dc-auth",
-
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,
       }),
       onRehydrateStorage: () => (state) => {
+        
         if (state) {
-          state.isAuthenticated = !!state.user;
+          state.isAuthenticated = false;
         }
       },
     },
