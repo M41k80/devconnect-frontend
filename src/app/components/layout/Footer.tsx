@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Heart } from "lucide-react";
 import { useI18n } from "@/app/i18n";
 import { SiGithub } from "react-icons/si";
+import { Logo } from "./navbar/Logo";
 
 type FooterLink = {
   label: string;
@@ -70,23 +71,8 @@ export function Footer() {
       <div className="dc-container py-14">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4 group w-fit">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-display font-bold transition-transform duration-200 group-hover:scale-105"
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--brand), var(--accent))",
-                }}
-              >
-                DC
-              </div>
-              <span
-                className="font-display font-bold text-base tracking-tight"
-                style={{ color: "var(--text)" }}
-              >
-                DevConnect
-              </span>
-            </Link>
+            
+            <Logo />
 
             <p
               className="text-xs leading-relaxed max-w-[180px]"

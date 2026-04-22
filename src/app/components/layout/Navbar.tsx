@@ -1,51 +1,52 @@
-'use client'
+"use client";
 
-import { useState, useEffect, FC } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/app/lib/utils"
-import { Menu, X, Layers, Compass, ChevronDown, Globe } from "lucide-react"
-import { useI18n } from "@/app/i18n"
-import { useAuthStore } from "@/app/store/auth.store"
-import { useModal } from "@/app/context/ModalContext"
+import { useState, useEffect, FC } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/app/lib/utils";
+import { Menu, X, Layers, Compass, ChevronDown, Globe } from "lucide-react";
+import { useI18n } from "@/app/i18n";
+import { useAuthStore } from "@/app/store/auth.store";
+import { useModal } from "@/app/context/ModalContext";
 
-import { ThemeToggle } from "@/app/components/layout/navbar/ThemeToggle"
-import { UserMenu } from "@/app/components/layout/navbar/UserMenu"
-import { AuthButtons } from "@/app/components/layout/navbar/AuthButtons"
-import { MobileMenu } from "@/app/components/layout/navbar/MobileMenu"
+import { ThemeToggle } from "@/app/components/layout/navbar/ThemeToggle";
+import { UserMenu } from "@/app/components/layout/navbar/UserMenu";
+import { AuthButtons } from "@/app/components/layout/navbar/AuthButtons";
+import { MobileMenu } from "@/app/components/layout/navbar/MobileMenu";
+import { Logo } from "./navbar/Logo";
 
 export const Navbar: FC = () => {
-  const pathname = usePathname()
-  const { isAuthenticated } = useAuthStore()
-  const { t, locale, setLocale } = useI18n()
-  const { openAuth } = useModal()
+  const pathname = usePathname();
+  const { isAuthenticated } = useAuthStore();
+  const { t, locale, setLocale } = useI18n();
+  const { openAuth } = useModal();
 
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [langOpen, setLangOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(href + "/")
+    pathname === href || pathname.startsWith(href + "/");
 
   const links = [
     { href: "/projects", label: t.nav.projects, icon: Layers },
     ...(isAuthenticated
       ? [{ href: "/discover", label: t.nav.discover, icon: Compass }]
       : []),
-  ]
+  ];
 
   return (
     <>
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          scrolled && "border-b backdrop-blur-xl"
+          scrolled && "border-b backdrop-blur-xl",
         )}
         style={{
           background: scrolled
@@ -56,22 +57,8 @@ export const Navbar: FC = () => {
       >
         <div className="dc-container flex h-16 items-center justify-between gap-4">
           
-          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-display font-bold transition-transform duration-200 group-hover:scale-105"
-              style={{ background: "linear-gradient(135deg, var(--brand), var(--accent))" }}
-            >
-              DC
-            </div>
-            <span
-              className="hidden sm:block font-display font-bold text-lg tracking-tight"
-              style={{ color: "var(--text)" }}
-            >
-              DevConnect
-            </span>
-          </Link>
+          <Logo />
 
-         
           <nav className="hidden md:flex items-center gap-1">
             {links.map(({ href, label, icon: Icon }) => (
               <Link
@@ -81,7 +68,7 @@ export const Navbar: FC = () => {
                   "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150",
                   isActive(href)
                     ? "bg-[--brand]/10 text-[--brand]"
-                    : "text-[--text-muted] hover:text-[--text] hover:bg-[--bg-overlay]"
+                    : "text-[--text-muted] hover:text-[--text] hover:bg-[--bg-overlay]",
                 )}
               >
                 <Icon size={15} /> {label}
@@ -90,37 +77,44 @@ export const Navbar: FC = () => {
           </nav>
 
           <div className="flex items-center gap-1.5">
-            
             <div className="relative">
               <button
                 onClick={() => setLangOpen((v) => !v)}
                 className="flex items-center gap-1 px-2.5 py-2 rounded-lg text-sm transition-colors duration-150 text-[--text-muted] hover:text-[--text] hover:bg-[--bg-overlay]"
               >
                 <Globe size={15} />
-                <span className="hidden sm:block font-mono text-xs uppercase">{locale}</span>
+                <span className="hidden sm:block font-mono text-xs uppercase">
+                  {locale}
+                </span>
                 <ChevronDown
                   size={11}
-                  className={cn("transition-transform duration-150", langOpen && "rotate-180")}
+                  className={cn(
+                    "transition-transform duration-150",
+                    langOpen && "rotate-180",
+                  )}
                 />
               </button>
 
               {langOpen && (
                 <div
                   className="absolute right-0 top-full mt-1.5 w-32 rounded-xl border py-1 shadow-xl anim-scale-in"
-                  style={{ background: "var(--bg-raised)", borderColor: "var(--border)" }}
+                  style={{
+                    background: "var(--bg-raised)",
+                    borderColor: "var(--border)",
+                  }}
                 >
                   {(["en", "es"] as const).map((l) => (
                     <button
                       key={l}
                       onClick={() => {
-                        setLocale(l)
-                        setLangOpen(false)
+                        setLocale(l);
+                        setLangOpen(false);
                       }}
                       className={cn(
                         "w-full flex items-center gap-2.5 px-3.5 py-2 text-sm transition-colors duration-100",
                         locale === l
                           ? "font-semibold text-[--brand]"
-                          : "text-[--text-muted] hover:text-[--text] hover:bg-[--bg-overlay]"
+                          : "text-[--text-muted] hover:text-[--text] hover:bg-[--bg-overlay]",
                       )}
                     >
                       <span>{l === "en" ? "🇬🇧" : "🇪🇸"}</span>
@@ -142,7 +136,6 @@ export const Navbar: FC = () => {
               />
             )}
 
-            
             <button
               className="md:hidden p-2 rounded-lg transition-colors text-[--text-muted] hover:bg-[--bg-overlay]"
               onClick={() => setMobileOpen((v) => !v)}
@@ -161,5 +154,5 @@ export const Navbar: FC = () => {
         />
       </header>
     </>
-  )
-}
+  );
+};
