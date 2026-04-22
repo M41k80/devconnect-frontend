@@ -2,17 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --bg: #ffffff;
   --bg-raised: #f7f8fa;
   --bg-overlay: #eef0f5;
   --border: #e2e5ee;
-  --text: #1d1f33;
-  --text-muted: #636685;
-  --text-dim: #9fa3bf;
-  --brand: #5d3fd3;
-  --brand-hover: #4c31b8;
+  --text: #0f1226;
+  --text-muted: #3f4761;
+  --text-dim: #6b7391;
+  --brand: #6d4aff;
+  --brand-hover: #5a38ff;
+  --brand-glow: rgba(109, 74, 255, 0.28);
+  --shadow-glow: 0 0 28px var(--brand-glow);
   --accent: #06b6d4;
   --success: #22c55e;
   --warning: #f97316;
@@ -27,11 +28,13 @@
   --bg-raised: #171930;
   --bg-overlay: #1e2240;
   --border: #272b47;
-  --text: #e6e8f5;
-  --text-muted: #8a8fad;
-  --text-dim: #444768;
-  --brand: #7c5ce8;
+  --text: #f2f5ff;
+  --text-muted: #b0b7d6;
+  --text-dim: #7c85a6;
+  --brand: #8b6bff;
   --brand-hover: #9b7fff;
+  --brand-glow: rgba(109, 74, 255, 0.28);
+  --shadow-glow: 0 0 28px var(--brand-glow);
   --accent: #22d3ee;
   --success: #4ade80;
   --warning: #fb923c;
@@ -40,7 +43,6 @@
   --shadow-hover: 0 4px 28px rgba(124, 92, 232, 0.28);
   --shadow-glow: 0 0 32px rgba(124, 92, 232, 0.45);
 }
-
 
 .theme-changing,
 .theme-changing *,
@@ -52,7 +54,6 @@
     color 0.3s ease,
     box-shadow 0.3s ease !important;
 }
-
 
 *,
 *::before,
@@ -74,7 +75,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -90,12 +90,10 @@ body {
   background: var(--text-dim);
 }
 
-
 ::selection {
   background: rgba(93, 63, 211, 0.22);
   color: var(--text);
 }
-
 
 :focus-visible {
   outline: 2px solid var(--brand);
@@ -103,9 +101,7 @@ body {
   border-radius: 6px;
 }
 
-
 @layer components {
-  
   .dc-container {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
@@ -126,7 +122,6 @@ body {
     color: var(--text-muted);
   }
 
-  
   .dc-card {
     @apply rounded-2xl border transition-all duration-200;
     background: var(--bg-raised);
@@ -137,12 +132,11 @@ body {
     @apply dc-card cursor-pointer;
   }
   .dc-card-interactive:hover {
-    border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
   }
 
-  
   .dc-btn {
     @apply relative inline-flex items-center justify-center gap-2
            rounded-xl px-5 py-2.5 text-sm font-semibold
@@ -174,7 +168,6 @@ body {
     background: var(--danger);
   }
 
-  
   .dc-input {
     @apply w-full rounded-xl px-4 py-3 text-sm outline-none
            transition-all duration-200;
@@ -194,13 +187,11 @@ body {
     border-color: var(--danger) !important;
   }
 
-  
   .dc-label {
     @apply block text-sm font-medium mb-1.5;
     color: var(--text-muted);
   }
 
-  
   .dc-badge {
     @apply inline-flex items-center gap-1.5 rounded-full
            border px-2.5 py-0.5 text-xs font-semibold;
@@ -219,13 +210,11 @@ body {
     animation: skeleton 1.6s ease-in-out infinite;
   }
 
-  
   .dc-page-title {
     @apply font-display text-3xl sm:text-4xl font-bold tracking-tight;
     color: var(--text);
   }
 }
-
 
 @keyframes skeleton {
   0% {
@@ -299,12 +288,10 @@ body {
   animation-delay: 400ms;
 }
 
-
 .bg-dots {
   background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
   background-size: 28px 28px;
 }
-
 
 .text-gradient {
   background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
