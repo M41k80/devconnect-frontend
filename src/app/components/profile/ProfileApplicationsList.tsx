@@ -9,7 +9,7 @@ import { AppliedProject } from '@/app/types/entities/applied-project.entity'
 import { ApplicationStatus } from '@/app/types/enums'
 import { useEffect } from 'react'
 
-const DISCORD_URL = 'https://discord.gg/fRPSECNF'
+const DISCORD_URL = 'https://discord.gg/5xEWnfJDjt'
 
 interface Props { apps: AppliedProject[]; loading: boolean }
 
