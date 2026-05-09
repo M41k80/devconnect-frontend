@@ -51,7 +51,7 @@ export function Footer() {
       links: [
         {
           label: t.footer.github,
-          href: "https://github.com/devconnect",
+          href: "https://github.com/Devconnect-by-m41k80dev",
           external: true,
         },
         {
@@ -148,7 +148,7 @@ export function Footer() {
             </span>
 
             <a
-              href="https://github.com/devconnect"
+              href="https://github.com/Devconnect-by-m41k80dev"
               target="_blank"
               rel="noopener noreferrer"
               className="p-1.5 rounded-lg transition-colors hover:text-[--text] hover:bg-[--bg-overlay]"
