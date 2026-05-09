@@ -31,6 +31,28 @@
 
 ---
 
+## Apóyame / Buy Me a Coffee
+
+❤️ Apoya el crecimiento de DevConnect || ❤️ Support DevConnect's Growth
+
+DevConnect nació con una misión clara: conectar el talento IT con proyectos reales de código abierto. Cada línea de código, desde el robusto backend hasta la interfaz, ha sido construida con dedicación para fortalecer nuestra comunidad.
+Mantener y escalar una plataforma gratuita requiere tiempo y recursos. Si este proyecto te ha aportado valor, te ha ayudado a encontrar colaboradores o simplemente crees en nuestra visión, considera apoyarnos.
+¿Eres una empresa? Conviértete en Sponsor para destacar tu marca ante una comunidad creciente de desarrolladores y profesionales del sector.
+
+
+DevConnect was born with a clear mission: connecting IT talent with real world open source projects. Every line of code, from the solid backend to the UI, has been built with dedication to empower our community.
+Running and scaling a free platform takes time and resources. If this project has provided value to you, helped you find collaborators, or you simply believe in our vision, please consider supporting us.
+Are you a company? Become a Sponsor to showcase your brand to a growing community of developers and tech professionals.
+
+
+
+
+
+[![Buy Me a Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/m41k80)
+
+
+-----
+
 ## 🧠 What is DevConnect? / ¿Qué es DevConnect?
 
 **EN:**
