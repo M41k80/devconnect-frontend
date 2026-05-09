@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/logo-full.jpeg" alt="DevConnect Logo" width="180" />
+  <img src="public/logo-full.png" alt="DevConnect Logo" width="180" />
 
   <h1>DevConnect — Web</h1>
 
@@ -172,7 +172,7 @@ src/
 
 ## 💬 Community / Comunidad
 
-Discord: https://discord.gg/fRPSECNF
+Discord: https://discord.gg/5xEWnfJDjt
 
 ---
 
